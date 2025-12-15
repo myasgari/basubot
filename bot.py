@@ -10,8 +10,8 @@ logging.basicConfig(
 )
 
 TOKEN = '8002485361:AAFHTiI8N6hhHGxw2KtRLCUFQ5Pzyq8UNVE'  # روی Render به عنوان Secret
-WEBHOOK_URL = os.environ.get("WEBHOOK_URL")  # مثلا https://yourservice.onrender.com/
-PORT = int(os.environ.get("PORT", 10000))
+WEBHOOK_URL = 'https://basubot.onrender.com'  # مثلا https://yourservice.onrender.com/
+PORT = int(10000)
 
 # سوالات و پاسخ‌های ثابت
 QUESTIONS = {
