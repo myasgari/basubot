@@ -246,9 +246,19 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 # /help
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = (
+        "❓ راهنمای استفاده از سامانه\n\n"
+        "برای مشاهده سوالات متداول، از گزینه «📋 Questions» استفاده کنید.\n"
+        "با انتخاب هر سوال، پاسخ مربوطه نمایش داده می‌شود.\n\n"
+        "در صورتی که سوال مورد نظر شما در فهرست بالا وجود نداشت، "
+        "می‌توانید با پشتیبانی آموزش مجازی دانشگاه بوعلی سینا "
+        "از طریق شماره زیر تماس بگیرید:\n\n"
+        "📞 081-31401542"
+    )
+
     await update.message.reply_text(
-        "/start - شروع\n/help - راهنما\n/questions - مشاهده سوالات\n/about - درباره بات",
-        reply_markup=main_menu
+        text,
+        reply_markup=main_menu()
     )
 
 # /questions
@@ -259,8 +269,21 @@ async def show_questions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # /about
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("ℹ️ این بات FAQ است، ساخته شده با پایتون و python-telegram-bot", reply_markup=main_menu)
+    text = (
+        "🤖 سامانه پاسخ‌گوی سوالات متداول کلاس‌های مجازی "
+        "دانشگاه بوعلی سینا\n\n"
+        "این سامانه با هدف پاسخ‌گویی سریع و دقیق به سوالات پرتکرار "
+        "دانشجویان و اساتید در خصوص سامانه‌های آموزشی مجازی "
+        "از جمله درس‌افزار (CW) و کلاس‌های آنلاین Adobe Connect "
+        "طراحی شده است.\n\n"
+        "────────────────────\n"
+        "ℹ️ این بات FAQ است، ساخته شده با پایتون و python-telegram-bot"
+    )
 
+    await update.message.reply_text(
+        text,
+        reply_markup=main_menu()
+    )
 # handler برای دکمه‌های ReplyKeyboardMarkup
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
