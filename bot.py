@@ -225,7 +225,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if key in QUESTIONS:
         q = QUESTIONS[key]["question"]
         a = QUESTIONS[key]["answer"]
-        await query.edit_message_text(f"❓ {q}\n\n💡 {a}")
+        await query.edit_message_text(f"سوال❓\n {q}\n\nجواب💡\n {a}")
 
         # دکمه برای بازگشت به لیست سوالات
         keyboard = [[InlineKeyboardButton("🔙 بازگشت به فهرست سوالات", callback_data="show_all")]]
@@ -246,20 +246,9 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 # /help
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = (
-        "❓ راهنمای استفاده از سامانه\n\n"
-        "برای مشاهده سوالات متداول، از گزینه «📋 Questions» استفاده کنید.\n"
-        "با انتخاب هر سوال، پاسخ مربوطه نمایش داده می‌شود.\n\n"
-        "در صورتی که سوال مورد نظر شما در فهرست بالا وجود نداشت، "
-        "می‌توانید با پشتیبانی آموزش مجازی دانشگاه بوعلی سینا "
-        "از طریق شماره زیر تماس بگیرید:\n\n"
-        "📞 081-31401542"
-    )
-
     await update.message.reply_text(
-        text,
-        reply_markup=main_menu(),  # این کیبورد پایین را نمایش می‌دهد
-        parse_mode="Markdown"      # اختیاری، برای فرمت بهتر
+         "برای مشاهده سوالات متداول، از گزینه «📋 سوالات» استفاده کنید. اگر سوال شما موجود نبود نبود، با پشتیبانی دانشگاه تماس بگیرید: 📞 081-31401542",
+        reply_markup=main_menu
     )
 
 # /questions
@@ -270,21 +259,10 @@ async def show_questions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # /about
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = (
-    "🤖 سامانه پاسخ‌گوی سوالات متداول کلاس‌های مجازی "
-    "دانشگاه بوعلی سینا\n\n"
-    "این سامانه با هدف پاسخ‌گویی سریع و دقیق به سوالات پرتکرار "
-    "دانشجویان و اساتید در خصوص سامانه‌های آموزشی مجازی "
-    "از جمله درس‌افزار (CW) و کلاس‌های آنلاین Adobe Connect "
-    "طراحی شده است.\n\n"
-    "--------------------------------\n"
-    "ℹ️ این بات FAQ است، ساخته شده با پایتون و python-telegram-bot"
-    )
 
     await update.message.reply_text(
-        text,
-        reply_markup=main_menu(),  # این کیبورد پایین را نمایش می‌دهد
-        parse_mode="Markdown"      # اختیاری، برای فرمت بهتر
+         "🤖 این بات سامانه کلاس‌های مجازی دانشگاه بوعلی سینا است.\nهدف: پاسخ سریع و دقیق به سوالات متداول دانشجویان و اساتید.",
+        reply_markup=main_menu
     )
 # handler برای دکمه‌های ReplyKeyboardMarkup
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
