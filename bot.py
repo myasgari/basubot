@@ -326,5 +326,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-update.message.reply_text("ℹ️ این بات FAQ است، ساخته شده با پایتون و python-telegram-bot", reply_markup=main_menu)
