@@ -204,6 +204,12 @@ main_menu = ReplyKeyboardMarkup(
 
 # /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    
+    await update.message.reply_text(
+        "منوی اصلی 👇",
+        reply_markup=main_menu
+    )
+
     keyboard = [[InlineKeyboardButton(data["button"], callback_data=key)] for key, data in QUESTIONS.items()]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text(
@@ -223,7 +229,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_text(f"❓ {q}\n\n💡 {a}")
 
         # دکمه برای بازگشت به لیست سوالات
-        keyboard = [[InlineKeyboardButton("📋 مشاهده همه سوالات", callback_data="show_all")]]
+        keyboard = [[InlineKeyboardButton("🔙 بازگشت به فهرست سوالات", callback_data="show_all")]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await context.bot.send_message(
             chat_id=query.message.chat_id,
