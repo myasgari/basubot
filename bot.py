@@ -1,7 +1,7 @@
 import logging
 import os
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
+from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes, MessageHandler, filters
 
 # Logging
 logging.basicConfig(
@@ -27,14 +27,25 @@ QUESTIONS = {
            "answer": "PyCharm، VS Code، Jupyter Notebook یا IDLE"}
 }
 
+# منوی پایین ثابت (ReplyKeyboardMarkup)
+main_menu = ReplyKeyboardMarkup(
+    keyboard=[
+        ["🏠 Start", "❓ Help"],
+        ["📋 Questions", "ℹ️ About"]
+    ],
+    resize_keyboard=True
+)
+
 # /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [[InlineKeyboardButton(data["question"], callback_data=key)] for key, data in QUESTIONS.items()]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text(f"سلام {update.effective_user.first_name}! یکی از سوالات را انتخاب کنید:", reply_markup=reply_markup)
+    await update.message.reply_text(
+        f"سلام {update.effective_user.first_name}! یکی از سوالات را انتخاب کنید:",
+        reply_markup=reply_markup
+    )
 
-# Callback handler
-# Callback handler
+# Callback handler برای سوالات
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -44,40 +55,50 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         q = QUESTIONS[key]["question"]
         a = QUESTIONS[key]["answer"]
         await query.edit_message_text(f"❓ {q}\n\n💡 {a}")
-
-        # دکمه برای بازگشت به لیست سوالات
-        keyboard = [[InlineKeyboardButton("📋 مشاهده همه سوالات", callback_data="show_all")]]
+        # بعد از نمایش پاسخ، کیبورد سوالات را دوباره نشان بده
+        keyboard = [[InlineKeyboardButton(data["question"], callback_data=key)] for key, data in QUESTIONS.items()]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await context.bot.send_message(
             chat_id=query.message.chat_id,
             text="می‌خواهید سوال دیگری بپرسید؟",
             reply_markup=reply_markup
         )
-
     elif key == "show_all":
-        # نمایش دوباره همه سوالات
         keyboard = [[InlineKeyboardButton(data["question"], callback_data=key)] for key, data in QUESTIONS.items()]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await query.edit_message_text(
-            text="لطفاً یکی از سوالات زیر را انتخاب کنید:",
-            reply_markup=reply_markup
-        )
+        await query.edit_message_text("لطفاً یکی از سوالات زیر را انتخاب کنید:", reply_markup=reply_markup)
 
 # /help
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = "/start - شروع\n/help - راهنما\n/questions - مشاهده سوالات\n/about - درباره بات"
-    await update.message.reply_text(text)
+    await update.message.reply_text(
+        "/start - شروع\n/help - راهنما\n/questions - مشاهده سوالات\n/about - درباره بات",
+        reply_markup=main_menu
+    )
 
 # /questions
 async def show_questions(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [[InlineKeyboardButton(data["question"], callback_data=key)] for key, data in QUESTIONS.items()]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text("لطفاً یکی از سوالات زیر را انتخاب کنید:", reply_markup=reply_markup)
+    await update.message.reply_text("📋 لطفاً یکی از سوالات زیر را انتخاب کنید:", reply_markup=reply_markup)
 
 # /about
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = "🤖 FAQ Bot\nساخته شده با پایتون و python-telegram-bot"
-    await update.message.reply_text(text)
+    await update.message.reply_text("ℹ️ این بات FAQ است، ساخته شده با پایتون و python-telegram-bot", reply_markup=main_menu)
+
+# handler برای دکمه‌های ReplyKeyboardMarkup
+async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text
+
+    if text == "🏠 Start":
+        await start(update, context)
+    elif text == "❓ Help":
+        await help_command(update, context)
+    elif text == "📋 Questions":
+        await show_questions(update, context)
+    elif text == "ℹ️ About":
+        await about(update, context)
+    else:
+        await update.message.reply_text("لطفاً یکی از دکمه‌ها را انتخاب کنید.", reply_markup=main_menu)
 
 # Main
 def main():
@@ -88,6 +109,7 @@ def main():
     app.add_handler(CommandHandler("questions", show_questions))
     app.add_handler(CommandHandler("about", about))
     app.add_handler(CallbackQueryHandler(button_handler))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
 
     print("✅ بات در حال اجراست (Webhook)...")
 
