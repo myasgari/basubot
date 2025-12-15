@@ -72,10 +72,12 @@ def main():
     print("✅ بات در حال اجراست (Webhook)...")
 
     # Webhook
+    WEBHOOK_PATH = "/bot"
     app.run_webhook(
         listen="0.0.0.0",
         port=PORT,
-        webhook_url=f"{WEBHOOK_URL}/bot"
+        webhook_url=f"{WEBHOOK_URL}{WEBHOOK_PATH}",
+        url_path=WEBHOOK_PATH
     )
 
 if __name__ == "__main__":
