@@ -258,7 +258,8 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(
         text,
-        reply_markup=main_menu()
+        reply_markup=main_menu(),  # این کیبورد پایین را نمایش می‌دهد
+        parse_mode="Markdown"      # اختیاری، برای فرمت بهتر
     )
 
 # /questions
@@ -282,7 +283,8 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(
         text,
-        reply_markup=main_menu()
+        reply_markup=main_menu(),  # این کیبورد پایین را نمایش می‌دهد
+        parse_mode="Markdown"      # اختیاری، برای فرمت بهتر
     )
 # handler برای دکمه‌های ReplyKeyboardMarkup
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -323,3 +325,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+update.message.reply_text("ℹ️ این بات FAQ است، ساخته شده با پایتون و python-telegram-bot", reply_markup=main_menu)
