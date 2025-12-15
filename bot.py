@@ -34,14 +34,34 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(f"سلام {update.effective_user.first_name}! یکی از سوالات را انتخاب کنید:", reply_markup=reply_markup)
 
 # Callback handler
+# Callback handler
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
     key = query.data
+
     if key in QUESTIONS:
         q = QUESTIONS[key]["question"]
         a = QUESTIONS[key]["answer"]
         await query.edit_message_text(f"❓ {q}\n\n💡 {a}")
+
+        # دکمه برای بازگشت به لیست سوالات
+        keyboard = [[InlineKeyboardButton("📋 مشاهده همه سوالات", callback_data="show_all")]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await context.bot.send_message(
+            chat_id=query.message.chat_id,
+            text="می‌خواهید سوال دیگری بپرسید؟",
+            reply_markup=reply_markup
+        )
+
+    elif key == "show_all":
+        # نمایش دوباره همه سوالات
+        keyboard = [[InlineKeyboardButton(data["question"], callback_data=key)] for key, data in QUESTIONS.items()]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await query.edit_message_text(
+            text="لطفاً یکی از سوالات زیر را انتخاب کنید:",
+            reply_markup=reply_markup
+        )
 
 # /help
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
