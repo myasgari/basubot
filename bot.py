@@ -17,6 +17,7 @@ PORT = int(10000)
 QUESTIONS = {
 
     "q1": {
+        "button": "سامانه‌های درس‌افزار دانشگاه",
         "question": "سامانه‌های درس‌افزار دانشگاه چیست و هر دانشکده از کدام استفاده می‌کند؟",
         "answer": (
             "سامانه‌های درس‌افزار دانشگاه بوعلی سینا:\n\n"
@@ -33,15 +34,17 @@ QUESTIONS = {
     },
 
     "q2": {
+        "button": "ورود اساتید به درس‌افزار",
         "question": "نحوه ورود اساتید به سامانه درس‌افزار چگونه است؟",
         "answer": (
             "👨‍🏫 نام کاربری: کد استادی\n"
             "🔑 رمز عبور: کد ملی + حرف m\n"
-            "مثال: 1234567890m"
+            "مثال: m1234567890"
         )
     },
 
     "q3": {
+        "button": "ورود دانشجویان به درس‌افزار",
         "question": "نحوه ورود دانشجویان به سامانه درس‌افزار چگونه است؟",
         "answer": (
             "🎓 ورودی‌های 1403 و 1404:\n"
@@ -54,6 +57,7 @@ QUESTIONS = {
     },
 
     "q4": {
+        "button": "یافتن درس‌افزار دانشکده",
         "question": "چگونه سامانه درس‌افزار دانشکده خود را پیدا کنیم؟",
         "answer": (
             "فهرست کامل سامانه‌های هر دانشکده در لینک زیر موجود است:\n"
@@ -63,6 +67,7 @@ QUESTIONS = {
     },
 
     "q5": {
+        "button": "عدم نمایش دروس عمومی",
         "question": "چرا دروس عمومی در درس‌افزار دانشکده نمایش داده نمی‌شود؟",
         "answer": (
             "تمامی دروس عمومی فقط در سامانه CW3 ارائه می‌شوند.\n\n"
@@ -73,6 +78,8 @@ QUESTIONS = {
     },
 
     "q6": {
+        "button": "اساتید و دروس عمومی",
+        "button": "اساتید و دروس عمومی",
         "question": "آیا اساتید برای دروس عمومی باید از CW3 استفاده کنند؟",
         "answer": (
             "بله ✅\n"
@@ -82,6 +89,7 @@ QUESTIONS = {
     },
 
     "q7": {
+        "button": "مشکل نمایش درس عمومی",
         "question": "اگر درس عمومی در CW3 نمایش داده نشد چه باید کرد؟",
         "answer": (
             "دلایل ممکن:\n"
@@ -94,19 +102,21 @@ QUESTIONS = {
     },
 
     "q8": {
+        "button": "ورود اساتید به کلاس آنلاین",
         "question": "نحوه ورود اساتید به کلاس Adobe Connect چگونه است؟",
         "answer": (
             "🎥 لینک اختصاصی استاد:\n"
             "http://vc.basu.ac.ir/basuxxxxxx\n\n"
             "نام کاربری: کد استادی\n"
             "رمز عبور: کد ملی + v\n"
-            "مثال: 1234567890v\n\n"
+            "مثال: v1234567890\n\n"
             "اگر وارد نشد:\n"
             "فقط کد ملی را امتحان کنید."
         )
     },
 
     "q9": {
+        "button": "ورود دانشجویان به کلاس آنلاین",
         "question": "نحوه ورود دانشجویان به کلاس Adobe Connect چگونه است؟",
         "answer": (
             "دانشجویان نام کاربری ندارند.\n\n"
@@ -118,6 +128,7 @@ QUESTIONS = {
     },
 
     "q10": {
+        "button": "محل لینک کلاس آنلاین",
         "question": "لینک کلاس آنلاین کجاست؟",
         "answer": (
             "تمام لینک‌های کلاس آنلاین داخل سامانه درس‌افزار (CW)\n"
@@ -126,6 +137,7 @@ QUESTIONS = {
     },
 
     "q11": {
+        "button": "مشکل Host شدن استاد",
         "question": "اگر استاد با لینک دانشجویی وارد شود و Host نباشد چه کند؟",
         "answer": (
             "1️⃣ خروج از کلاس\n"
@@ -136,6 +148,7 @@ QUESTIONS = {
     },
 
     "q12": {
+        "button": "عدم مشاهده جلسات ضبط‌شده",
         "question": "چرا دانشجویان نمی‌توانند جلسات ضبط‌شده را ببینند؟",
         "answer": (
             "زیرا استاد وضعیت ضبط جلسه را Public نکرده است.\n\n"
@@ -145,6 +158,7 @@ QUESTIONS = {
     },
 
     "q13": {
+        "button": "امنیت Adobe Connect",
         "question": "پروتکل امنیتی Adobe Connect دانشگاه چیست؟",
         "answer": (
             "پروتکل امن HTTPS\n"
@@ -154,6 +168,7 @@ QUESTIONS = {
     },
 
     "q14": {
+        "button": "تفاوت درس‌افزار و کلاس آنلاین",
         "question": "تفاوت اصلی درس‌افزار (CW) و Adobe Connect چیست؟",
         "answer": (
             "📚 درس‌افزار (CW):\n"
@@ -164,6 +179,7 @@ QUESTIONS = {
     },
 
     "q15": {
+        "button": "مشکل ورود به کلاس",
         "question": "اگر استاد یا دانشجو نتوانست وارد کلاس شود چه کار کند؟",
         "answer": (
             "• پاک کردن کش مرورگر\n"
@@ -188,7 +204,7 @@ main_menu = ReplyKeyboardMarkup(
 
 # /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [[InlineKeyboardButton(data["question"], callback_data=key)] for key, data in QUESTIONS.items()]
+    keyboard = [[InlineKeyboardButton(data["button"], callback_data=key)] for key, data in QUESTIONS.items()]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text(
         f"سلام {update.effective_user.first_name}! یکی از سوالات را انتخاب کنید:",
@@ -217,7 +233,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif key == "show_all":
         # نمایش دوباره همه سوالات
-        keyboard = [[InlineKeyboardButton(data["question"], callback_data=key)] for key, data in QUESTIONS.items()]
+        keyboard = [[InlineKeyboardButton(data["button"], callback_data=key)] for key, data in QUESTIONS.items()]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await query.edit_message_text(
             text="لطفاً یکی از سوالات زیر را انتخاب کنید:",
@@ -232,7 +248,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # /questions
 async def show_questions(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [[InlineKeyboardButton(data["question"], callback_data=key)] for key, data in QUESTIONS.items()]
+    keyboard = [[InlineKeyboardButton(data["button"], callback_data=key)] for key, data in QUESTIONS.items()]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text("📋 لطفاً یکی از سوالات زیر را انتخاب کنید:", reply_markup=reply_markup)
 
