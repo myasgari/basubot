@@ -195,7 +195,7 @@ QUESTIONS = {
 # منوی پایین ثابت (ReplyKeyboardMarkup)
 main_menu = ReplyKeyboardMarkup(
     keyboard=[
-        ["📋 سوالات"]
+        ["📋 سوالات"],
         ["❓ کمک", "ℹ️ درباره ربات"]
     ],
     resize_keyboard=True
